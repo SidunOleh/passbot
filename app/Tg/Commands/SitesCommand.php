@@ -19,16 +19,6 @@ class SitesCommand extends TgCommand
 
         $this->bot->sendMessage($message->getChat()->getId(), $response, '', true);
     }
-
-    private function getCommandArgs($commandStr)
-    {
-        $commandArr = array_filter(explode(' ', $commandStr), fn($v) => $v);
-        
-        unset($commandArr[0]);
-        $commandArgs = array_values($commandArr);
-        
-        return $commandArgs;
-    }
     
     private function getSites($page=1)
     {
