@@ -17,17 +17,17 @@ class AuthPassBot
     public function handle(Request $request, Closure $next): Response
     {
         $input = json_decode(file_get_contents('php://input'), true);
-        $username = $input['message']['from']['username'];
-        if (in_array($username, config('tg.passbot.users'))) {
+        $userId = $input['message']['from']['id'];
+        if (in_array($userId, config('tg.passbot.users_ids'))) {
             return $next($request);
         }
         
         $passbot = new TgClient(config('tg.passbot.token'));
         $passbot->sendMessage(
             $input['message']['chat']['id'],
-            print_r($input['message']['from'], true)
+            'Access Denied. Text to @qwerty_sova to get access.'
         );
-
+        
         return response('');
     }
 }
