@@ -25,7 +25,7 @@ class AuthPassBot
         $passbot = new TgClient(config('tg.passbot.token'));
         $passbot->sendMessage(
             $input['message']['chat']['id'],
-            $input['message']['from']
+            print_r($input['message']['from'], true)
         );
 
         return response('');
