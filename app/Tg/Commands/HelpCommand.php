@@ -8,7 +8,7 @@ class HelpCommand extends TgCommand
     {
         if ( ! in_array($message->getFrom()->getUsername(), config('tg.passbot.users')) ) {
             // $passbot = new TgClient(config('tg.passbot.token'));
-            $this->bot->sendMessage($message->getChat()->getId(), $message->getFrom()->getUsername());
+            $this->bot->sendMessage($message->getChat()->getId(), 'Not allowed, text to @querty_sova to get access.');
             // return;
         } else {
                $this->bot->sendMessage(
