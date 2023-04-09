@@ -27,6 +27,7 @@ class AuthPassBot
             $input['message']['chat']['id'],
             'Access Denied. Text to @qwerty_sova to get access.'
         );
+        
         return response('');
     }
 }
