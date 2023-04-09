@@ -14,7 +14,7 @@ class AuthPassBot
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next): Response|null
     {
         $input = json_decode(file_get_contents('php://input'), true);
         $username = $input['message']['from']['username'];
@@ -27,6 +27,6 @@ class AuthPassBot
             $input['message']['chat']['id'],
             'Access Denied. Text to @qwerty_sova to get access.'
         );
-        return response('');
+        // return response('');
     }
 }
