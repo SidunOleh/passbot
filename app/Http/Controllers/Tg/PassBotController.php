@@ -23,11 +23,11 @@ class PassBotController extends Controller
     
     public function __invoke()
     {
-        if ( ! Gate::allows('auth-passbot') ) {
-            // return;
-        } else {
-            return;
-        }
+        // if ( ! Gate::allows('auth-passbot') ) {
+        //     // return;
+        // } else {
+        //     return;
+        // }
 
         $this->passbot->command('start', Closure::fromCallable([
             new HelpCommand($this->passbotToken), 
