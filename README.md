@@ -1,4 +1,4 @@
-# PASSBOT - sites access manager 
+# PASSBOT - site access manager
 
 ### Commands 
 
