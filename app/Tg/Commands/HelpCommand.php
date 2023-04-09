@@ -10,7 +10,7 @@ class HelpCommand extends TgCommand
     {
         $this->bot->sendMessage(
             $message->getChat()->getId(), 
-            print_r(Gate::allows('auth-passbot') . '1', true)
+            Gate::allows('auth-passbot') ? 1 : 2
         );
     }
 }
