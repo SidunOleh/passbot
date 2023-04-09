@@ -8,11 +8,9 @@ class HelpCommand extends TgCommand
 {
     public function handle($message): void
     {
-        // Log::info(print_r($message, true));
-
         $this->bot->sendMessage(
             $message->getChat()->getId(), 
-            print_r($message->getFrom()->getUsername(), true)
+            file_get_contents('php://input')
         );
     }
 }
