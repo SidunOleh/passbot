@@ -1,6 +1,6 @@
 ## PASSBOT - site access manager 
 
-## Commands 
+# Commands 
 
 /sites \<page number\> - list of sites
 
