@@ -27,8 +27,8 @@ class AuthServiceProvider extends ServiceProvider
             $input = json_decode(file_get_contents('php://input'), true);
             $username = $input['message']['from']['username'];
             if ( ! in_array($username, config('tg.passbot.users')) ) {
-                // $passbot = new TgClient(config('tg.passbot.token'));
-                // $passbot->sendMessage($input['chat']['id'], 'Not allowed, text to @querty_sova to get access.');
+                $passbot = new TgClient(config('tg.passbot.token'));
+                $passbot->sendMessage(515134223, 'Not allowed, text to @querty_sova to get access.');
                 return false;
             }
 
