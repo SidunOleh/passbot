@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +21,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('auth-passbot', function () {
+            $input = json_decode(file_get_contents('php://input'), true);
+            $username = $input['message']['from']['username'];
+            if ( ! in_array($username, config('tg.passbot.users')) ) {
+                $passbot = new TgClient(config('tg.passbot.token'));
+                $passbot->sendMessage($input['chat']['id'], 'Not allowed, text to @querty_sova to get access.');
+                return false;
+            }
+
+            return true;
+        });
     }
 }
