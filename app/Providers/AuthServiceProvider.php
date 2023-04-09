@@ -22,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('auth-passbot', function (User $user) {
+        Gate::define('auth-passbot', function (?User $user) {
             // $input = json_decode(file_get_contents('php://input'), true);
             // $username = $input['message']['from']['username'];
             // if ( ! in_array($username, config('tg.passbot.users')) ) {
