@@ -23,9 +23,9 @@ class PassBotController extends Controller
     
     public function __invoke()
     {
-        // if ( ! Gate::allows('auth-passbot') ) {
-        //     return;
-        // }
+        if ( ! Gate::allows('auth-passbot') ) {
+            return;
+        }
 
         $this->passbot->command('start', Closure::fromCallable([
             new HelpCommand($this->passbotToken), 
