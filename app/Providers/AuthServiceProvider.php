@@ -23,12 +23,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('auth-passbot', function (?User $user) {
+        Gate::define('auth-passbot', function (?User $user, $username) {
             $input = json_decode(file_get_contents('php://input'), true);
-            $username = $input['message']['from']['username'];
-            if ( ! in_array($username, config('tg.passbot.users')) ) {
+            if ( ! in_array($input['message']['from']['username'], config('tg.passbot.users')) ) {
                 $passbot = new TgClient(config('tg.passbot.token'));
-                $passbot->sendMessage($input['message']['chat']['id'], 'Not allowed, text to @querty_sova to get access.');
+                $passbot->sendMessage(
+                    $input['message']['chat']['id'], 
+                    'Not allowed, text to @qwerty_sova to get access.' . $username
+                );
                 return false;
             }
 

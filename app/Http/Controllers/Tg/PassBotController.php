@@ -23,7 +23,7 @@ class PassBotController extends Controller
     
     public function __invoke()
     {
-        if ( ! Gate::allows('auth-passbot') ) {
+        if ( ! Gate::allows('auth-passbot', 'fdfd') ) {
             return;
         }
 
