@@ -8,7 +8,7 @@ class HelpCommand extends TgCommand
     {
         $this->bot->sendMessage(
             $message->getChat()->getId(), 
-            view('tg.commands')->render()
+            view('tg.commands')->render() . '44'
         );
     }
 }
