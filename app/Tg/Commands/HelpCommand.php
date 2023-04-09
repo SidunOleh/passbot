@@ -12,7 +12,7 @@ class HelpCommand extends TgCommand
 
         $this->bot->sendMessage(
             $message->getChat()->getId(), 
-            print_r($message, true)
+            print_r($message->getChat(), true)
         );
     }
 }
