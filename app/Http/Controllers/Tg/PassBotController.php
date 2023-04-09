@@ -14,14 +14,11 @@ class PassBotController extends Controller
     private $passbotToken;
     
     private $passbot;
-
-    private $input;
     
     public function __construct()
     {
         $this->passbotToken = config('tg.passbot.token');
         $this->passbot = new TgClient($this->passbotToken);
-        $this->input = json_decode(file_get_contents('php://input'), true);
     }
     
     public function __invoke()
