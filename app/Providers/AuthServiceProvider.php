@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use TelegramBot\Api\Client as TgClient;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,17 +23,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('auth-passbot', function (?User $user, $username) {
-            $input = json_decode(file_get_contents('php://input'), true);
-            if ( ! in_array($input['message']['from']['username'], config('tg.passbot.users')) ) {
-                $passbot = new TgClient(config('tg.passbot.token'));
-                $passbot->sendMessage(
-                    $input['message']['chat']['id'], 
-                    'Not allowed, text to @qwerty_sova to get access.' . $username
-                );
-                return false;
-            }
-
-            return true;
+            return in_array($username, config('tg.passbot.users'));
         });
     }
 }

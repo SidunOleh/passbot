@@ -14,17 +14,24 @@ class PassBotController extends Controller
     private $passbotToken;
     
     private $passbot;
+
+    private $input;
     
     public function __construct()
     {
         $this->passbotToken = config('tg.passbot.token');
         $this->passbot = new TgClient($this->passbotToken);
+        $this->input = json_decode(file_get_contents('php://input'), true);
     }
     
     public function __invoke()
     {
-        if ( ! Gate::allows('auth-passbot', 'fdfd') ) {
-            return;
+        if (! $this->allowAccess()) {
+            $this->passbot->sendMessage(
+                $this->input['message']['chat']['id'],
+                'Access Denied. Text to @qwerty_sova to get access.',
+            );
+            // return;
         }
 
         $this->passbot->command('start', Closure::fromCallable([
@@ -41,5 +48,13 @@ class PassBotController extends Controller
         ]));
 
         $this->passbot->run();
+    }
+
+    private function allowAccess()
+    {
+        return in_array(
+            $this->input['message']['from']['username'], 
+            config('tg.passbot.users')
+        );
     }
 }
