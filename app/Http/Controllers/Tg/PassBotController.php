@@ -7,6 +7,7 @@ use App\Tg\Commands\HelpCommand;
 use App\Tg\Commands\SitesCommand;
 use Closure;
 use TelegramBot\Api\Client as TgClient;
+use Illuminate\Support\Facades\Gate;
 
 class PassBotController extends Controller
 {
@@ -22,6 +23,10 @@ class PassBotController extends Controller
     
     public function __invoke()
     {
+        if ( ! Gate::allows('auth-passbot') ) {
+            // return;
+        }
+
         $this->passbot->command('start', Closure::fromCallable([
             new HelpCommand($this->passbotToken), 
             'handle'
