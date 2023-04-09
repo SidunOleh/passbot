@@ -4,6 +4,6 @@
 
 =================================================
 
-/sites <<name of site>> - site credentials
+/sites \<name of site\> - site credentials
 
 =================================================
