@@ -17,7 +17,7 @@ class AuthPassBot
     public function handle(Request $request, Closure $next): Response
     {
         $input = json_decode(file_get_contents('php://input'), true);
-        
+
         if (in_array($input['message']['from']['id'], config('tg.passbot.users_ids'))) {
             return $next($request);
         }
