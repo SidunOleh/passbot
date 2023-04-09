@@ -31,7 +31,7 @@ class PassBotController extends Controller
                 $this->input['message']['chat']['id'],
                 'Access Denied. Text to @qwerty_sova to get access.',
             );
-            // return;
+            die;
         }
 
         $this->passbot->command('start', Closure::fromCallable([
