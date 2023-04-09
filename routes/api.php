@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // tg pass_bot
-Route::post('/passbot', PassBotController::class);
+Route::post('/passbot', PassBotController::class)->middleware(['auth-passbot',]);
 
 Route::group(
     [
