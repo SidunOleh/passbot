@@ -12,7 +12,7 @@
                 </div>
             </div>
         </header>
-        <main class="main flex-grow-1">
+        <main class="main flex-grow-1 pt-3 pb-3">
             <router-view />
         </main>
         <footer v-if="!isLogin" class="footer text-center bg-light p-3">
