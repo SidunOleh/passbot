@@ -1,6 +1,6 @@
-# PASSBOT - site access manager
+# PASSBOT - site access manager(admin panel, tg bot)
 
-### Commands 
+### Tg commands
 
 /sites \<page number\> - list of sites
 
