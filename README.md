@@ -1,6 +1,6 @@
 # PASSBOT - site access manager(admin panel, tg bot)
 
-### Tg commands
+### Tg commands | @sova_pass_bot
 
 list of sites
 ```
