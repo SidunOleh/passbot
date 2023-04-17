@@ -4,10 +4,10 @@
 
 list of sites
 ```
-/sites \<page number\>
+/sites <page number>
 ````
 
 site credentials
 ```
-/sites \<name of site\>
+/sites <name of site>
 ```
