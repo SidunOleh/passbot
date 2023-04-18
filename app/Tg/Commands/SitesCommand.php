@@ -32,12 +32,16 @@ class SitesCommand extends TgCommand
             ->render();
     }
     
-    private function getCredentials($site)
+    private function getCredentials($siteName)
     {
-        $credentials = Site::firstWhere('name', 'like', "{$site}%")
-            ->credentials()
-            ->orderByDesc('created_at')
-            ->get() ?? [];
+        $site = Site::firstWhere('name', 'like', "{$siteName}%");
+        if (! $site) {
+            $credentials = [];
+        } else {
+            $credentials = $site->credentials()
+                ->orderByDesc('created_at')
+                ->get();
+        }
             
         return view('tg.credentials', ['credentials' => $credentials,])
             ->render();
