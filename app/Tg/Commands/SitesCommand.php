@@ -17,7 +17,16 @@ class SitesCommand extends TgCommand
             $response = $this->getCredentials($commandArgs[0]);    
         }
 
-        $this->bot->sendMessage($message->getChat()->getId(), $response, 'HTML', true);
+        $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
+            [
+                [
+                    ['text' => 'link', 'url' => 'https://core.telegram.org']
+                ]
+            ]
+        );
+        
+        $this->bot->sendMessage($message->getChat()->getId(), 'sdd', null, false, null, $keyboard);
+        // $this->bot->sendMessage($message->getChat()->getId(), $response, 'HTML', true);
     }
     
     private function getSites($page=1)
