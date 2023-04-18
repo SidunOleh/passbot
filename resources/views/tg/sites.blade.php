@@ -1,7 +1,6 @@
 @if (count($sites))
 @foreach ($sites as $site)
-
-/sites{{ '/' . $site->name }}
+{{ $site->name }}
 
 {{ $site->url }}
 
