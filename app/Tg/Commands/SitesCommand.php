@@ -8,16 +8,16 @@ class SitesCommand extends TgCommand
 {
     public function handle($message): void
     {
-        // $commandStr = $message->getText();
-        // $commandArgs = $this->getCommandArgs($commandStr);
+        $commandStr = $message->getText();
+        $commandArgs = $this->getCommandArgs($commandStr);
         
-        // if (! $commandArgs or is_numeric($commandArgs[0])) {
-        //     $response = $this->getSites($commandArgs[0] ?? 1);
-        // } else {
-        //     $response = $this->getCredentials($commandArgs[0]);    
-        // }
+        if (! $commandArgs or is_numeric($commandArgs[0])) {
+            $response = $this->getSites($commandArgs[0] ?? 1);
+        } else {
+            $response = $this->getCredentials($commandArgs[0]);    
+        }
 
-        $this->bot->sendMessage($message->getChat()->getId(), $response = 'ffdf', '', true);
+        $this->bot->sendMessage($message->getChat()->getId(), $response, '', true);
     }
     
     private function getSites($page=1)
@@ -35,12 +35,12 @@ class SitesCommand extends TgCommand
     private function getCredentials($siteName)
     {
         $site = Site::firstWhere('name', 'like', "{$siteName}%");
-        if (! $site) {
-            $credentials = [];
-        } else {
+        if ($site) {
             $credentials = $site->credentials()
                 ->orderByDesc('created_at')
                 ->get();
+        } else {
+            $credentials = [];
         }
             
         return view('tg.credentials', ['credentials' => $credentials,])
