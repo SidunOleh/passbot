@@ -23,7 +23,7 @@ class AuthPassBot
         // }
 
         (new TgClient(config('tg.passbot.token')))->sendMessage(
-            $input['message']['chat']['id'],
+            515134223,
             // 'Access Denied. Text to @qwerty_sova to get access.'
             print_r($input, true)
         );
