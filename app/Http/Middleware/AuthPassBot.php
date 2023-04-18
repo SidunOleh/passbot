@@ -18,13 +18,14 @@ class AuthPassBot
     {
         $input = json_decode(file_get_contents('php://input'), true);
 
-        if (in_array($input['message']['from']['id'], config('tg.passbot.users_ids'))) {
-            return $next($request);
-        }
+        // if (in_array($input['message']['from']['id'], config('tg.passbot.users_ids'))) {
+        //     return $next($request);
+        // }
 
         (new TgClient(config('tg.passbot.token')))->sendMessage(
             $input['message']['chat']['id'],
-            'Access Denied. Text to @qwerty_sova to get access.'
+            // 'Access Denied. Text to @qwerty_sova to get access.'
+            print_r($input, true)
         );
         
         return response('');
