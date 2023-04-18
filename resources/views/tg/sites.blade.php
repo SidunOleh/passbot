@@ -1,7 +1,7 @@
 @if (count($sites))
 @foreach ($sites as $site)
 {{ $site->name }}
-<a href="asd">asd</a>
+<a href="asd">/sites {{ $site->name }}</a>
 {{ $site->url }}
 
 =================================================
