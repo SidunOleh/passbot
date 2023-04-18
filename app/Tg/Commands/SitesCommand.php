@@ -17,7 +17,7 @@ class SitesCommand extends TgCommand
             $response = $this->getCredentials($commandArgs[0]);    
         }
 
-        $this->bot->sendMessage($message->getChat()->getId(), $response, '', true);
+        $this->bot->sendMessage($message->getChat()->getId(), $response, 'HTML', true);
     }
     
     private function getSites($page=1)
