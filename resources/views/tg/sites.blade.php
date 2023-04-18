@@ -1,6 +1,6 @@
 @if (count($sites))
 @foreach ($sites as $site)
-{{ $site->name }}
+<!-- {{ $site->name }} -->
 /sites@{{ $site->name }}
 
 {{ $site->url }}
